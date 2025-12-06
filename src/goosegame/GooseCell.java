@@ -20,7 +20,7 @@ public class GooseCell extends Cell{
 	}
 
 	public String toString(){
-		return super.toString()+" (goose) and jumps to ";
+		return super.toString()+" (goose) ";
 	}
 }
 

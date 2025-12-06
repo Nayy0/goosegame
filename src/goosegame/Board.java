@@ -1,6 +1,6 @@
 package goosegame;
 
-public abstarct class Board{
+public abstract class Board{
 	/**the number of cells*/
 	protected final int nbOfCells;
 

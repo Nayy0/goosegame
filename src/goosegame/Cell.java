@@ -14,6 +14,13 @@ public class Cell{
 	public Cell(int index){
 		this.index=index;
 	}
+	
+	/**return the index of the cell
+	 * @return this's index
+	 */
+	public int getIndex(){
+		return this.index;
+	}
 
 	/**return true because it is a good cell
 	 * @return true
