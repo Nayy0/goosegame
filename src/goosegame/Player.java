@@ -63,4 +63,11 @@ public class Player {
       int result = oneDieThrow() + oneDieThrow();
       return result;
    }
+
+   /**return true if the player can play
+    * @return true if the player can play
+    */
+   public boolean canPlay(){
+	   return this.cell.canPlay();
+   }
 }// Player
