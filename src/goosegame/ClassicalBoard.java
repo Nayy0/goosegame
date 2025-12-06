@@ -20,9 +20,6 @@ public class ClassicalBoard extends Board{
 	 */
 	public ClassicalBoard(){
 		super(63);
-		for(int i=0;i<64;i++){
-			this.theCells[i]=new Cell(i);
-		}
 		this.initBoard();
 	}
 
@@ -30,6 +27,9 @@ public class ClassicalBoard extends Board{
 	 * Creates all the cells in the board based on the classical goosegame
 	 */
 	public void initBoard(){
+		for(int i=0;i<64;i++){
+                        this.theCells[i]=new Cell(i);
+		}
 		for(int i=0;i<ClassicalBoard.GOOSE_CELLS.length;i++){
                         this.theCells[ClassicalBoard.GOOSE_CELLS[i]]=new GooseCell(ClassicalBoard.GOOSE_CELLS[i]);
                 }

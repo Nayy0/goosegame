@@ -32,12 +32,13 @@ public class Game{
 	 * @param p1 the player we don't want to have
 	 * @return a different player at the given cell
 	 */
-	public Player getPlayer(Cell c,Player p1){
-		for (Player p2 : this.thePlayers){
-			if (p2.getCell()==c && p1!=p2){
-				return p2;
+	public List<Player> getPlayers(Cell c){
+		List<Player> res=new ArrayList<Player>();
+		for (Player p : this.thePlayers){
+			if (p.getCell()==c){
+				res.add(p);
 			}
-		}return null;
+		}return res;
 	}
 
 	/**print the played turn
@@ -54,7 +55,7 @@ public class Game{
 			 if (!busy){
                                 System.out.println(p+" is in cell "+previousCell.getIndex()+", "+p+" throws "+d+" and reaches "+reachedCell+" and jumps to cell "+p.getCell());
                         }else{
-				Player p2=this.getPlayer(previousCell,p);
+				Player p2=this.getPlayers(previousCell).get(0);
 				System.out.println(p+" is in cell "+p.getCell().getIndex()+", "+p+" throws "+d+"and reaches "+reachedCell+"cell is busy, "+p2+" is sent to "+previousCell);
 			}
 		 }
@@ -71,7 +72,7 @@ public class Game{
 		if(!busy){
 			System.out.println(p+" is in cell "+previousCell.getIndex()+", "+p+" throws "+d+" and reaches "+reachedCell+" and jumps to cell "+p.getCell());
 		}else{
-			Player p2=this.getPlayer(previousCell,p);
+			Player p2=this.getPlayers(previousCell).get(0);
 			System.out.println(p+" is in cell "+p.getCell().getIndex()+", "+p+" throws "+d+"and reaches "+reachedCell+"cell is busy, "+p2+" is sent to "+previousCell);
 		}
 	}
@@ -87,7 +88,7 @@ public class Game{
 		if (!busy){
 			System.out.println(p+" is in cell "+previousCell.getIndex()+", "+p+" throws "+d+" and reaches "+reachedCell);
 		}else{
-			Player p2=this.getPlayer(previousCell,p);
+			Player p2=this.getPlayers(previousCell).get(0);
 			System.out.println(p+" is in cell "+previousCell.getIndex()+", "+p+" throws "+d+"and reaches "+reachedCell+"cell is busy, "+p2+" is sent to "+previousCell);
 		}
 	}
@@ -97,8 +98,14 @@ public class Game{
 	 * @param previousCell the previousCell of the player
 	 * @return true if the cell of the player is busy
 	 */
-	public boolean busyCell(Player p,Cell previousCell){
-		Player p2=this.getPlayer(p.getCell(),p);
+	public boolean busyCell(Player p1,Cell previousCell){
+		List<Player> players=this.getPlayers(p1.getCell());
+		Player p2=null;
+		for (Player p : players){
+			if (p!=p1){
+				p2=p;
+			}
+		}
 		if (p2!=null){
 			p2.changeCell(previousCell);
 			return true;
@@ -113,7 +120,11 @@ public class Game{
 	 */
 	public Cell moveOn(Player p,int dice){
 		Cell previousCell=p.getCell();
-		int reachedCellIndex=p.getCell().getIndex()+dice;
+		int reachedCellIndex;
+		if (p.getCell().getIndex()+dice>this.board.getNbOfCells()){
+			reachedCellIndex=this.board.getNbOfCells-(dice-(this.board.getNbOfCells-p.getCell()));
+		}else{
+			reachedCellIndex=p.getCell().getIndex()+dice;
 		Cell reachedCell=this.board.getCell(reachedCellIndex);
 		p.changeCell(reachedCell);
 		int finalCellIndex=reachedCell.rebound(dice);
