@@ -60,7 +60,16 @@ public class GameTest{
 	@Test
 	public void moveOnWorksWellWhenPlayerExceedTheArival(){
 		assertSame(this.b.getCell(5),this.g.moveOn(this.p1,7));
-		assertSame(this.b.getCell(1),this.g.moveOn(this.p1.getCell()));
+		assertSame(this.b.getCell(1),this.p1.getCell());
+	}
+
+	@Test
+	public void isFinishedTest(){
+		assertFalse(this.g.isFinished());
+		this.g.moveOn(this.p1,2);
+		assertFalse(this.g.isFinished());
+		this.g.moveOn(this.p2,6);
+		assertTrue(this.g.isFinished());
 	}
 }
 

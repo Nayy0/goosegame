@@ -120,14 +120,16 @@ public class Game{
 	 */
 	public Cell moveOn(Player p,int dice){
 		Cell previousCell=p.getCell();
-		int reachedCellIndex;
+		int reachedCellIndex=p.getCell().getIndex()+dice;
 		if (p.getCell().getIndex()+dice>this.board.getNbOfCells()){
-			reachedCellIndex=this.board.getNbOfCells-(dice-(this.board.getNbOfCells-p.getCell()));
-		}else{
-			reachedCellIndex=p.getCell().getIndex()+dice;
+			reachedCellIndex=this.board.getNbOfCells()-(reachedCellIndex-this.board.getNbOfCells());
+		}
 		Cell reachedCell=this.board.getCell(reachedCellIndex);
 		p.changeCell(reachedCell);
 		int finalCellIndex=reachedCell.rebound(dice);
+		if (finalCellIndex>this.board.getNbOfCells()){
+			finalCellIndex=this.board.getNbOfCells()-(finalCellIndex-this.board.getNbOfCells());
+		}
 		Cell finalCell=this.board.getCell(finalCellIndex);
 		p.changeCell(finalCell);
 		this.busyCell(p,previousCell);
