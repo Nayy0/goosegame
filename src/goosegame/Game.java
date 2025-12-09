@@ -132,7 +132,6 @@ public class Game{
 		}
 		Cell finalCell=this.board.getCell(finalCellIndex);
 		p.changeCell(finalCell);
-		this.busyCell(p,previousCell);
 		return reachedCell;
 	}
 
