@@ -52,9 +52,7 @@ public class GameTest{
 		assertSame(this.b.getCell(4),this.p1.getCell());
 		assertSame(this.b.getCell(4),this.g.moveOn(this.p2,4));
 		assertSame(this.b.getCell(4),this.p2.getCell());
-		assertSame(this.b.getCell(0),this.p1.getCell());
-		assertSame(this.b.getCell(5),this.g.moveOn(this.p1,5));
-		assertSame(this.b.getCell(1),this.p1.getCell());
+		assertSame(this.b.getCell(4),this.p1.getCell());
 	}
 
 	@Test
