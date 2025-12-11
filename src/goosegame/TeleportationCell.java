@@ -9,7 +9,7 @@ public class TeleportationCell extends Cell{
 	protected int teleportationIndex;
 
 	/**builds a teleportation cell
-	 * @param index
+	 * @param index the index of the cell
 	 * @param it the teleportation index
 	 */
 	public TeleportationCell(int index,int it){

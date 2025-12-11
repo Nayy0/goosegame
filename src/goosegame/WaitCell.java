@@ -12,6 +12,8 @@ public class WaitCell extends Cell{
 
 	/**
 	 * builds a wait cell
+	 * @param index the index of the cell
+	 * @param nbTurns the number of turns the player has to wait before playing
 	 */
 	public WaitCell(int index,int nbTurns){
 		super(index);

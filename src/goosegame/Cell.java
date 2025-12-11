@@ -9,7 +9,7 @@ public class Cell{
 
 	/**
 	 * builds a cell with en index
-	 * @param index
+	 * @param index the index of the cell
 	 */
 	public Cell(int index){
 		this.index=index;

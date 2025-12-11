@@ -60,6 +60,12 @@ public class GameTest{
 		assertSame(this.b.getCell(5),this.g.moveOn(this.p1,7));
 		assertSame(this.b.getCell(1),this.p1.getCell());
 	}
+	
+	@Test
+	public void playThrowsNoPlayerExeptionWhenNoPlayers(){
+		Game g2=new Game(this.b);
+		assertThrows(NoPlayerException.class, () -> g2.play());
+	}
 
 	@Test
 	public void isFinishedTest(){
